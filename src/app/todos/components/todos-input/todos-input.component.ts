@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'todos-input',
@@ -9,8 +9,11 @@ export class TodosInputComponent {
 
   title = '';
 
+  @Output()
+  create = new EventEmitter<string>();
+
   createTodo(): void {
-    console.log('Create Todo:', this.title);
+    this.create.emit(this.title);
     this.title = '';
   }
 }

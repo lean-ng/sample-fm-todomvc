@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewEncapsulation} from '@angular/core';
 import {Todo} from '../../model/todo';
 
 @Component({
@@ -14,18 +14,29 @@ export class TodosItemComponent implements OnChanges, OnInit, OnDestroy {
   @Input()
   todo: Todo;
 
+  @Output()
+  destroy = new EventEmitter<Todo>();
+
+  @Output()
+  toggle = new EventEmitter<Todo>();
+
   // Private Helper
   private oldTitle: string;
 
   // - Public Methods (usually event handlers)
   toggleTodo(): void {
-    this.todo.completed = !this.todo.completed;
+    this.toggle.emit(this.todo);
   }
 
   // - Constructor (usually empty, just used for DI - Dependency Injection
   constructor() {
     // Mock some component data
     this.todo = { id: 17, title: 'Template Syntax', completed: false };
+  }
+
+  // Event Handler
+  destroyTodo(): void {
+      this.destroy.emit(this.todo);
   }
 
   // Called each time any input property changes (ref-changes!)

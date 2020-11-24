@@ -1,14 +1,17 @@
 <section class="todoapp">
   <header class="header">
     <h1>todos</h1>
-    <todos-input></todos-input>
+    <todos-input (create)="todos.push({ id: -1, title: $event, completed: false })" ></todos-input>
   </header>
   <!-- This section should be hidden by default and shown when there are todos -->
   <section class="main">
     <input id="toggle-all" class="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      <todos-item [todo]="todos[0]"></todos-item>
+      <todos-item *ngFor="let t of todos; trackBy: trackById" [todo]="t"
+        (destroy)="destroy(t)" (toggle)="toggle($event)">
+
+      </todos-item>
     </ul>
   </section>
   <!-- This footer should be hidden by default and shown when there are todos -->

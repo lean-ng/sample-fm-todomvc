@@ -17,6 +17,20 @@ export class TodosShellComponent implements OnInit {
     ];
   }
 
+  // Event Handler
+  destroy(todo: Todo): void {
+    this.todos = this.todos.filter(t => t !== todo);
+  }
+
+  toggle(todo: Todo): void {
+    const ix  = this.todos.findIndex(t => t === todo);
+    this.todos[ix] = { ...this.todos[ix], completed: !this.todos[ix].completed };
+  }
+
+  trackById(todo: Todo): number {
+    return todo.id;
+  }
+
   ngOnInit(): void {
   }
 
