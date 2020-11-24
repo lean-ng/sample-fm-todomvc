@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Todo} from '../../model/todo';
 
 @Component({
   selector: 'todos-shell',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosShellComponent implements OnInit {
 
-  constructor() { }
+  todos: Todo[];
+
+  constructor() {
+    this.todos = [
+      { id: 17, title: 'Component Interaction', completed: false },
+      { id: 18, title: 'Template Syntax', completed: false }
+    ];
+  }
 
   ngOnInit(): void {
   }

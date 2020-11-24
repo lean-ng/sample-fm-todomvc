@@ -7,3 +7,27 @@
   <p>Created by <a href="http://todomvc.com">you</a></p>
   <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 </footer>
+
+
+<h1 *appDemoDirective>Kein Test</h1>
+<ng-template appDemoDirective>
+  <h1>Kein Test</h1>
+</ng-template>
+
+<h1 *ngIf="17 > 4">Demo</h1>
+
+<ng-template [ngIf]="true">
+  <h1>Noch ein Demo</h1>
+</ng-template>
+
+<ul>
+  <li *ngFor="let z of zahlen; let ix=index; let erstes=first; let gerade=even;">
+    {{ erstes ? 'Erster: ' : '' }} {{ ix }} {{ z }} {{ gerade }}
+  </li>
+</ul>
+
+<ul>
+  <ng-template ngFor [ngForOf]="zahlen" let-zahl let-erstes="first" let-ung="odd">
+    <li>{{ ung }} {{ erstes }} {{ zahl }}</li>
+  </ng-template>
+</ul>
